@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolce Vita Cocktails - Authentic Homemade Italian Cocktails</title>
+    <meta name="description" content="Experience the authentic taste of Italy with our homemade cocktails. Crafted with traditional recipes and the finest ingredients.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'wine-red': '#722F37',
+                        'olive-green': '#556B2F',
+                        'cream': '#FFF8DC',
+                        'gold': '#D4AF37',
+                    },
+                    fontFamily: {
+                        'playfair': ['Playfair Display', 'serif'],
+                        'lato': ['Lato', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://picsum.photos/seed/italiancocktail/1920/1080.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .fade-in {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .cocktail-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .cocktail-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .testimonial-card {
+            transition: transform 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .btn-primary {
+            background-color: #722F37;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #5a242a;
+        }
+        
+        .btn-secondary {
+            background-color: #D4AF37;
+            transition: background-color 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #b3952e;
+        }
+        
+        .navbar {
+            transition: background-color 0.3s ease, padding 0.3s ease;
+        }
+        
+        .navbar-scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 0.5rem 0;
+        }
+        
+        .form-input {
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: #722F37;
+            outline: none;
+        }
+        
+        .social-icon {
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            color: #722F37;
+            transform: scale(1.2);
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: #D4AF37;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-bg {
+                background-attachment: scroll;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar fixed top-0 w-full z-50 py-4 px-6">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-10 h-10 bg-wine-red rounded-full flex items-center justify-center mr-2">
+                    <span class="text-gold font-bold text-xl">DV</span>
+                </div>
+                <span class="text-xl font-playfair font-bold text-white">Dolce Vita Cocktails</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="text-white hover:text-gold transition">Home</a>
+                <a href="#about" class="text-white hover:text-gold transition">About</a>
+                <a href="#cocktails" class="text-white hover:text-gold transition">Cocktails</a>
+                <a href="#testimonials" class="text-white hover:text-gold transition">Testimonials</a>
+                <a href="#contact" class="text-white hover:text-gold transition">Contact</a>
+            </div>
+            <button id="mobile-menu-btn" class="md:hidden text-white">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4">
+            <a href="#home" class="block py-2 text-white hover:text-gold transition">Home</a>
+            <a href="#about" class="block py-2 text-white hover:text-gold transition">About</a>
+            <a href="#cocktails" class="block py-2 text-white hover:text-gold transition">Cocktails</a>
+            <a href="#testimonials" class="block py-2 text-white hover:text-gold transition">Testimonials</a>
+            <a href="#contact" class="block py-2 text-white hover:text-gold transition">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg h-screen flex items-center justify-center">
+        <div class="text-center text-white px-6 fade-in">
+            <div class="mb-8">
+                <div class="w-24 h-24 bg-wine-red rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span class="text-gold font-bold text-4xl">DV</span>
+                </div>
+                <h1 class="text-5xl md:text-6xl font-playfair font-bold mb-4">Dolce Vita Cocktails</h1>
+                <p class="text-xl md:text-2xl mb-8 italic">Authentic Homemade Italian Cocktails</p>
+            </div>
+            <button class="btn-primary text-white px-8 py-3 rounded-full text-lg font-semibold hover:shadow-lg transition">
+                Order Now
+            </button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-cream">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center slide-up">
+                <h2 class="text-4xl font-playfair font-bold mb-6 text-wine-red section-title">Our Story</h2>
+                <p class="text-lg mb-6 leading-relaxed">
+                    In the heart of Italy, where tradition meets passion, Dolce Vita Cocktails was born. Our story begins with Nonna Sofia, who believed that every celebration deserved a perfect cocktail. Her secret recipes, passed down through generations, capture the essence of Italian hospitality and the vibrant flavors of the Mediterranean.
+                </p>
+                <p class="text-lg leading-relaxed">
+                    Today, we honor her legacy by crafting each cocktail with the same love and attention to detail. From the sun-kissed lemons of the Amalfi Coast to the rich grapes of Tuscany, our ingredients tell a story of Italy's diverse regions. Each sip is a journey through the rolling hills, ancient cities, and charming villages that make Italy so enchanting.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Signature Cocktails Section -->
+    <section id="cocktails" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-playfair font-bold mb-4 text-wine-red section-title">Signature Cocktails</h2>
+                <p class="text-lg text-gray-600">Taste the essence of Italy in every sip</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Cocktail 1 -->
+                <div class="cocktail-card bg-white rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://picsum.photos/seed/aperol/400/500.jpg" alt="Aperol Spritz" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-playfair font-bold mb-2 text-wine-red">Aperol Spritz</h3>
+                        <p class="text-gray-600 mb-4">A refreshing blend of Aperol, Prosecco, and a splash of soda water. Perfect for warm summer evenings on the patio.</p>
+                        <div class="flex items-center text-gold">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cocktail 2 -->
+                <div class="cocktail-card bg-white rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://picsum.photos/seed/negroni/400/500.jpg" alt="Negroni" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-playfair font-bold mb-2 text-wine-red">Classic Negroni</h3>
+                        <p class="text-gray-600 mb-4">A sophisticated balance of gin, Campari, and sweet vermouth. A timeless Italian classic with a rich history.</p>
+                        <div class="flex items-center text-gold">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cocktail 3 -->
+                <div class="cocktail-card bg-white rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://picsum.photos/seed/limoncello/400/500.jpg" alt="Limoncello Spritz" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-playfair font-bold mb-2 text-wine-red">Limoncello Spritz</h3>
+                        <p class="text-gray-600 mb-4">Bright and zesty with homemade limoncello, Prosecco, and fresh mint. A taste of the Amalfi Coast in a glass.</p>
+                        <div class="flex items-center text-gold">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Cocktail 4 -->
+                <div class="cocktail-card bg-white rounded-lg overflow-hidden shadow-lg">
+                    <img src="https://picsum.photos/seed/bellini/400/500.jpg" alt="Bellini" class="w-full h-64 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-playfair font-bold mb-2 text-wine-red">Venetian Bellini</h3>
+                        <p class="text-gray-600 mb-4">A delightful combination of fresh peach purée and Prosecco. Created in Venice, this cocktail is pure elegance.</p>
+                        <div class="flex items-center text-gold">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-cream">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-playfair font-bold mb-4 text-wine-red section-title">What Our Customers Say</h2>
+                <p class="text-lg text-gray-600">Real reviews from cocktail enthusiasts</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-white p-8 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://picsum.photos/seed/person1/100/100.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Isabella Romano</h4>
+                            <div class="flex text-gold">
+                                <i class="fas fa-star text-sm"></i>
+                                <i class="fas fa-star text-sm"></i>
+                                <i class="fas fa-star text-sm"></i>
+                                <i class="fas fa-star text-sm"></i>
+                                <i class="fas fa-star text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"The Negroni I ordered transported me straight to a small bar in Florence. Absolutely authentic and perfectly balanced!"</p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card bg-white p-8 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://picsum.photos/seed/person2/100/100.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Marco Bianchi</h4>
+                            <div class="flex text-gold">
+                                <i class="fas fa-star text-sm"></i>
+                                <i class="fas fa-star text-sm"></i>
+                                <i class="fas fa-star text-sm"></i>
+                                <i class="fas fa-star text-sm"></i>
+                                <i class="fas fa-star text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"As someone who grew up in Italy, I can say with confidence that these cocktails taste like home. The Limoncello Spritz is exceptional!"</p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card bg-white p-8 rounded-lg shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <img src="https://picsum.photos/seed/person3/100/100.jpg" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-bold">Sophia Conti</h4>
+                            <div class="flex text-gold">
+                                <i class="fas fa-star text-sm"></i>
+                                <i class="fas fa-star text-sm"></i>
+                                <i class="fas fa-star text-sm"></i>
+                                <i class="fas fa-star text-sm"></i>
+                                <i class="fas fa-star text-sm"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"I ordered cocktails for my anniversary dinner, and they were a huge hit! The quality and presentation exceeded my expectations."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact / Subscribe Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="text-4xl font-playfair font-bold mb-4 text-wine-red section-title">Join Our Cocktail Club</h2>
+                <p class="text-lg text-gray-600 mb-8">Subscribe to receive exclusive recipes, special offers, and invitations to our tasting events.</p>
+                <form id="subscribe-form" class="flex flex-col md:flex-row gap-4">
+                    <input type="text" id="name" placeholder="Your Name" class="form-input flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none">
+                    <input type="email" id="email" placeholder="Your Email" class="form-input flex-1 px-4 py-3 rounded-lg border border-gray-300 focus:outline-none">
+                    <button type="submit" class="btn-secondary text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition">
+                        Subscribe
+                    </button>
+                </form>
+                <div id="form-message" class="mt-4 text-green-600 hidden">Thank you for subscribing! Check your email for a welcome cocktail recipe.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-wine-red text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center mr-2">
+                            <span class="text-wine-red font-bold text-xl">DV</span>
+                        </div>
+                        <span class="text-xl font-playfair font-bold">Dolce Vita Cocktails</span>
+                    </div>
+                    <p class="text-sm">Made in Italy with ❤️</p>
+                </div>
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="#" class="social-icon text-white hover:text-gold">
+                        <i class="fab fa-facebook-f text-xl"></i>
+                    </a>
+                    <a href="#" class="social-icon text-white hover:text-gold">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="social-icon text-white hover:text-gold">
+                        <i class="fab fa-twitter text-xl"></i>
+                    </a>
+                    <a href="#" class="social-icon text-white hover:text-gold">
+                        <i class="fab fa-pinterest text-xl"></i>
+                    </a>
+                </div>
+                <div class="text-sm">
+                    <p>&copy; 2023 Dolce Vita Cocktails. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+                navbar.querySelectorAll('a').forEach(link => {
+                    link.classList.remove('text-white');
+                    link.classList.add('text-wine-red');
+                });
+                document.querySelector('#navbar span').classList.remove('text-white');
+                document.querySelector('#navbar span').classList.add('text-wine-red');
+                document.querySelector('#mobile-menu-btn i').classList.remove('text-white');
+                document.querySelector('#mobile-menu-btn i').classList.add('text-wine-red');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+                navbar.querySelectorAll('a').forEach(link => {
+                    link.classList.add('text-white');
+                    link.classList.remove('text-wine-red');
+                });
+                document.querySelector('#navbar span').classList.add('text-white');
+                document.querySelector('#navbar span').classList.remove('text-wine-red');
+                document.querySelector('#mobile-menu-btn i').classList.add('text-white');
+                document.querySelector('#mobile-menu-btn i').classList.remove('text-wine-red');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                // Close mobile menu if open
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+
+        // Form submission
+        document.getElementById('subscribe-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            
+            if (name && email) {
+                document.getElementById('form-message').classList.remove('hidden');
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    document.getElementById('form-message').classList.add('hidden');
+                }, 5000);
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('slide-up');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
